@@ -2625,8 +2625,8 @@ void TrackArtist::DrawClipSpectrum(WaveTrackCache &waveTrackCache,
    } // each xx
 
    wxBitmap converted = wxBitmap(image);
-
    wxMemoryDC memDC;
+   converted.SaveFile(wxString("/home/qinjianbo/Desktop/test.png"),wxBITMAP_TYPE_PNG);
 
    memDC.SelectObject(converted);
 

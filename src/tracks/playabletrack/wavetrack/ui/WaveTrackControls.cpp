@@ -732,14 +732,14 @@ void WaveTrackMenuTable::OnSetDisplay(wxCommandEvent & event)
    const bool wrongScale =
       (id == WaveTrack::Waveform &&
       pTrack->GetWaveformSettings().isLinear() != linear);
-   if (wrongType || wrongScale) {
+   if (wrongType || wrongScale)
+   {
       pTrack->SetLastScaleType();
       pTrack->SetDisplay(WaveTrack::WaveTrackDisplay(id));
       if (wrongScale)
-         pTrack->GetIndependentWaveformSettings().scaleType = linear
-         ? WaveformSettings::stLinear
-         : WaveformSettings::stLogarithmic;
-
+      {
+         pTrack->GetIndependentWaveformSettings().scaleType = linear ? WaveformSettings::stLinear: WaveformSettings::stLogarithmic;
+      }
       // Assume partner is wave or null
       auto partner = static_cast<WaveTrack *>(pTrack->GetLink());
       if (partner) {
