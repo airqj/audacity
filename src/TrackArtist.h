@@ -52,7 +52,7 @@ class AUDACITY_DLL_API TrackArtist {
  public:
    TrackArtist();
    ~TrackArtist();
-
+   int  counter_export = 0;
    void SetColours(int iColorIndex);
    void DrawTracks(TrackPanelDrawingContext &context,
                    TrackList *tracks, Track *start,

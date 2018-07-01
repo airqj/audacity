@@ -186,6 +186,7 @@ audio tracks.
 #include "Experimental.h"
 #include "TrackPanelDrawingContext.h"
 
+#include "AudioIO.h"
 
 #undef PROFILE_WAVEFORM
 #ifdef PROFILE_WAVEFORM
@@ -2626,7 +2627,12 @@ void TrackArtist::DrawClipSpectrum(WaveTrackCache &waveTrackCache,
 
    wxBitmap converted = wxBitmap(image);
    wxMemoryDC memDC;
-   converted.SaveFile(wxString("/home/qinjianbo/Desktop/test.png"),wxBITMAP_TYPE_PNG);
+   if(gAudioIO->IsBusy())
+   {
+        wxString path_img = wxString::Format(wxT("/home/qinjianbo/DATA/test%i.png"),counter_export);
+        counter_export++;
+        converted.SaveFile(path_img,wxBITMAP_TYPE_PNG);
+   }
 
    memDC.SelectObject(converted);
 
