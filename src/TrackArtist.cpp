@@ -187,6 +187,7 @@ audio tracks.
 #include "TrackPanelDrawingContext.h"
 
 #include "AudioIO.h"
+#include "Project.h"
 
 #undef PROFILE_WAVEFORM
 #ifdef PROFILE_WAVEFORM
@@ -2199,7 +2200,6 @@ AColor::ColorGradientChoice ChooseColorSet( float bin0, float bin1, float selBin
    return  AColor::ColorGradientTimeSelected;
 }
 
-
 void TrackArtist::DrawClipSpectrum(WaveTrackCache &waveTrackCache,
                                    const WaveClip *clip,
                                    wxDC & dc,
@@ -2626,12 +2626,17 @@ void TrackArtist::DrawClipSpectrum(WaveTrackCache &waveTrackCache,
    } // each xx
 
    wxBitmap converted = wxBitmap(image);
+   wxBitmap spectrogtam = converted;
+   spectrogtam.SetWidth(1774);
+   spectrogtam.SetHeight(299);
    wxMemoryDC memDC;
    if(gAudioIO->IsBusy())
    {
-        wxString path_img = wxString::Format(wxT("/home/qinjianbo/DATA/test%i.png"),counter_export);
+        AudacityProject *const audacityProject = ::GetActiveProject();
+        wxString fileName = waveTrackCache.GetTrack()->GetName();
+        wxString path_img = wxString::Format(wxT("/home/qinjianbo/DATA/%s_%i.png"),fileName,counter_export);
         counter_export++;
-        converted.SaveFile(path_img,wxBITMAP_TYPE_PNG);
+        spectrogtam.SaveFile(path_img,wxBITMAP_TYPE_PNG);
    }
 
    memDC.SelectObject(converted);
