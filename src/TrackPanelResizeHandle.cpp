@@ -173,7 +173,8 @@ UIHandle::Result TrackPanelResizeHandle::Drag
       int newTrackHeight = mInitialTrackHeight + delta;
       if (newTrackHeight < pTrack->GetMinimizedHeight())
          newTrackHeight = pTrack->GetMinimizedHeight();
-      pTrack->SetHeight(newTrackHeight);
+      //pTrack->SetHeight(newTrackHeight);
+      pTrack->SetHeight(385);
    };
 
    //STM: We may be dragging one or two (stereo) tracks.

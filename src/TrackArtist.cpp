@@ -188,6 +188,7 @@ audio tracks.
 
 #include "AudioIO.h"
 #include "Project.h"
+#include "RefreshCode.h"
 
 #undef PROFILE_WAVEFORM
 #ifdef PROFILE_WAVEFORM
@@ -2627,14 +2628,14 @@ void TrackArtist::DrawClipSpectrum(WaveTrackCache &waveTrackCache,
 
    wxBitmap converted = wxBitmap(image);
    wxBitmap spectrogtam = converted;
-   spectrogtam.SetWidth(1774);
-   spectrogtam.SetHeight(299);
    wxMemoryDC memDC;
    if(gAudioIO->IsBusy())
    {
+       //waveTrackCache.GetTrack()->SetHeight(385);
+       // RefreshCode::RefreshAll;
         AudacityProject *const audacityProject = ::GetActiveProject();
         wxString fileName = waveTrackCache.GetTrack()->GetName();
-        wxString path_img = wxString::Format(wxT("/home/qinjianbo/DATA/%s_%i.png"),fileName,counter_export);
+        wxString path_img = wxString::Format(wxT("/home/qinjianbo/DATA/od_specs/%s_%i.png"),fileName,counter_export);
         counter_export++;
         spectrogtam.SaveFile(path_img,wxBITMAP_TYPE_PNG);
    }
